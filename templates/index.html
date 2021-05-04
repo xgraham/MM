@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 class="title" style="margin-bottom: 10px" >
+
+        {% if current_user.is_authenticated %}
+            <a class="button is-large is-link is-inverted is-outlined" href="{{ url_for('main.swipe') }}">Click here to swipe & chill 😎😎 </a>
+        {% endif %}
+        {% if not current_user.is_authenticated %}
+            <p style="margin-bottom: 10px">
+                <a class="button is-link is-inverted is-outlined" href="{{ url_for('auth.login') }}">
+                Login to 💦💦
+                </a>
+            </p>
+            <p style="margin-bottom: 10px">
+                <a class="button is-link is-inverted is-outlined" href="{{ url_for('auth.signup') }}">
+                    Sign Up to 🍆🍆
+                </a>
+            </p>
+        {% endif %}
+    </h1>
+    <h2 class="subtitle" style="margin-top:10px ">
+        Movie Match.com
+    </h2>
+{% endblock %}

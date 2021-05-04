@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <h1 class="title" style="margin-bottom: 10px">
+            Manage your matches here
+        </h1>
+
+        <div class="block">
+            <a href="{{ url_for('mgmt.add') }}" class="button is-outlined">
+                Add a new mate 😉
+            </a>
+            <p>
+                You're matching 🥵 movies with:
+
+            <p>
+            <div class="columns">
+                {% for mate in matches %}
+                    <div class="column is-outlined is-hero">
+                        {{ mate['email'] }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="block">
+        Movie History
+        <div class="columns is-centered">
+            <div class="column is-narrow">
+                <table class="table is-link is-fullwidth is-bordered ">
+
+                    {% for item in movies %}
+                        <tr>
+                            <td>{{ item['title'] }}</td>
+                            <td>{{ item['status'] }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+<script src="/static/emojis.js"></script>
+    <script>
+        document.onkeydown = checkKey;
+
+        function checkKey(e) {
+
+            e = e || window.event;
+
+            if (e.keyCode == '38') {
+                // up arrow
+                document.getElementById('seen').click();
+            }
+            else if (e.keyCode == '40') {
+                // down arrow
+            }
+            else if (e.keyCode == '37') {
+                // left arrow
+                document.getElementById('dislike').click();
+            }
+            else if (e.keyCode == '39') {
+                document.getElementById('like').click();
+                // right arrow
+            }
+
+        }
+    </script>
+    <h1 class="subtitle">
+        Time to find movies like this one:
+    </h1>
+    <h1 class="title">
+        <div class="block"> {{ movie.title }} </div>
+    </h1>
+    <div class="block">
+        <figure >
+            <img src="{{ img_url }}">
+        </figure></div>
+    <div class="block"> Release: {{ movie.release_year }}</div>
+    <div class="block"> Runtime:{{ movie.runtime }}</div>
+    <div class="block">Summary: {{ movie.summary }}</div>
+    <div class="block"> Genres:
+        {% for item in genres %}
+            {{ item }}
+        {% endfor %}
+    </div>
+    <div class="block">
+    <div class="columns">
+
+        <div class="column is-4"><a id="dislike" class="button is-link is-inverted is-outlined" href="{{ url_for('main.dislike') }}?id={{ movie.movie_id}}">Pass!</a></div>
+        <div class="column is-4"><a id="seen" class="button is-link is-inverted is-outlined" href="{{ url_for('main.seen') }}?id={{ movie.movie_id }}">Seen it!</a></div>
+        <div class="column is-4"><a onmouseover="generateEmojis()" id="like" class="button is-link is-inverted is-outlined" href="{{ url_for('main.like') }}?id={{ movie.movie_id }}">Let's watch it!</a></div>
+
+    </div>
+    </div>
+
+
+{% endblock %}
